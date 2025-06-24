@@ -7,7 +7,7 @@ require('dotenv').config();
 app.use(cors({
   origin: [
     'http://localhost:4200', // para desarrollo local (Angular u otro)
-    'https://dancing-beignet-abf76a.netlify.app' // tu frontend en producción
+    'https://formulariobecas.netlify.app/personas' // tu frontend en producción
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
