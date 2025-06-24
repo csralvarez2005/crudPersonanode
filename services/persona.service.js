@@ -6,14 +6,14 @@ const getAll = async () => await Persona.findAll();
 const getById = async (id) => await Persona.findByPk(id);
 
 const create = async (dto) => {
-  const nueva = PersonaDTO(dto.nombre, dto.email, dto.direccion);
+  const nueva = PersonaDTO(dto.nombre, dto.email, dto.direccion, dto.tipoDocumento, dto.documento);
   return await Persona.create(nueva);
 };
 
 const update = async (id, dto) => {
   const persona = await Persona.findByPk(id);
   if (!persona) return null;
-  const datosActualizados = PersonaDTO(dto.nombre, dto.email, dto.direccion);
+ const datosActualizados = PersonaDTO(dto.nombre, dto.email, dto.direccion, dto.tipoDocumento, dto.documento);
   return await persona.update(datosActualizados);
 };
 

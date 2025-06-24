@@ -14,6 +14,15 @@ const Persona = sequelize.define('Persona', {
   direccion: {
     type: DataTypes.TEXT,
   },
+  tipoDocumento: {
+    type: DataTypes.STRING,
+    allowNull: true, // Permitido temporalmente para evitar error
+  },
+  documento: {
+    type: DataTypes.STRING,
+    allowNull: true, // Permitido temporalmente
+    unique: true,
+  },
 });
 
 module.exports = Persona;

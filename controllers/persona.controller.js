@@ -2,26 +2,34 @@ const express = require('express');
 const router = express.Router();
 const service = require('../services/persona.service');
 
-router.get('/', async (req, res) => {
-  const personas = await service.getAll();
-  res.json(personas);
-});
+exports.listarPersonas = async (req, res) => {
+  try {
+    const personas = await service.getAll();
+    res.json(personas);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
-router.get('/:id', async (req, res) => {
-  const persona = await service.getById(req.params.id);
-  persona ? res.json(persona) : res.status(404).send('No encontrada');
-});
+exports.obtenerPersonaPorId = async (req, res) => {
+  try {
+    const persona = await service.getById(req.params.id);
+    persona ? res.json(persona) : res.status(404).send('No encontrada');
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
-router.post('/', async (req, res) => {
+exports.crearPersona = async (req, res) => {
   try {
     const nueva = await service.create(req.body);
     res.status(201).json(nueva);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
-});
+};
 
-router.put('/:id', async (req, res) => {
+exports.actualizarPersona = async (req, res) => {
   try {
     const actualizada = await service.update(req.params.id, req.body);
     actualizada
@@ -30,11 +38,15 @@ router.put('/:id', async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
-});
+};
 
-router.delete('/:id', async (req, res) => {
-  const eliminada = await service.remove(req.params.id);
-  eliminada ? res.status(204).send() : res.status(404).send('No encontrada');
-});
-
-module.exports = router;
+exports.eliminarPersona = async (req, res) => {
+  try {
+    const eliminada = await service.remove(req.params.id);
+    eliminada
+      ? res.status(204).send()
+      : res.status(404).send('No encontrada');
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

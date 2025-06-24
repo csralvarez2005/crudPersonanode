@@ -1,7 +1,9 @@
-const PersonaDTO = (nombre, email, direccion) => ({
+const PersonaDTO = (nombre, email, direccion, tipoDocumento, documento) => ({
   nombre,
   email,
   direccion,
+  tipoDocumento,
+  documento,
 });
 
 module.exports = PersonaDTO;
