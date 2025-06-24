@@ -3,11 +3,11 @@ const cors = require('cors');
 const app = express();
 require('dotenv').config();
 
-// 🔥 CORS ANTES de cualquier ruta
+// ✅ CORS correctamente configurado
 app.use(cors({
   origin: [
-    'http://localhost:4200', // para desarrollo local (Angular u otro)
-    'https://formulariobecas.netlify.app/personas' // tu frontend en producción
+    'http://localhost:4200',
+    'https://formulariobecas.netlify.app' // sin /personas
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -18,7 +18,6 @@ app.use(express.json());
 const { initDb } = require('./models');
 const personaRoutes = require('./routes/persona.routes');
 
-// 🔥 Registrar rutas DESPUÉS de CORS
 app.use('/api/personas', personaRoutes);
 
 const PORT = process.env.PORT || 3000;
