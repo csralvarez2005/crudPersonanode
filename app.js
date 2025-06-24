@@ -5,7 +5,10 @@ require('dotenv').config();
 
 // 🔥 CORS ANTES de cualquier ruta
 app.use(cors({
-  origin: 'http://localhost:4200',
+  origin: [
+    'http://localhost:4200', // para desarrollo local (Angular u otro)
+    'https://dancing-beignet-abf76a.netlify.app' // tu frontend en producción
+  ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
